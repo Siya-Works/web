@@ -28,3 +28,8 @@ export const adsEnabled =
   /^ca-pub-\d{16}$/.test(publisher) &&
   /^\d+$/.test(slot) &&
   process.env.NEXT_PUBLIC_ADS_CONSENT_READY === "true";
+
+export const adsenseScriptEnabled =
+  /^ca-pub-\d{16}$/.test(publisher) &&
+  (adsEnabled ||
+    process.env.NEXT_PUBLIC_ADSENSE_VERIFICATION_ENABLED === "true");

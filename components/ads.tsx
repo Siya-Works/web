@@ -1,22 +1,10 @@
 "use client";
-import Script from "next/script";
 import { useEffect, useRef } from "react";
 import { adsEnabled, publisher, slot } from "@/lib/site";
 declare global {
   interface Window {
     adsbygoogle: Record<string, unknown>[];
   }
-}
-export function AdsScript() {
-  return adsEnabled ? (
-    <Script
-      id="adsense"
-      async
-      strategy="afterInteractive"
-      crossOrigin="anonymous"
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisher}`}
-    />
-  ) : null;
 }
 export function AdSlot() {
   const ref = useRef<HTMLModElement>(null);

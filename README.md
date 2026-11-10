@@ -59,15 +59,17 @@ Remove any temporary `SITE_URL` override and rerun the workflow. Pages metadata 
 
 References: [GitHub custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site), [custom Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
-## Google AdSense (off by default)
+## Google AdSense verification and advertising
 
-No ad script, ad requests, or ad containers render in the default configuration. Publishing the website does not require AdSense. Approval and actual ad serving are controlled by Google.
+The production workflow loads the provided publisher script (`ca-pub-8770754164986364`) once in every page’s head for ownership verification. It also publishes the account meta tag and `ads.txt`. Manual ad placements remain disabled pending approval and consent setup. Loading the script contacts Google; keep Auto ads off in the AdSense account during review if you do not want automatic placements. Approval and actual ad serving are controlled by Google.
+
+To stop loading the verification script, set Actions variable `ADSENSE_VERIFICATION_ENABLED=false` and keep `ADS_ENABLED=false`, then rebuild. The local default remains script-free unless `NEXT_PUBLIC_ADSENSE_VERIFICATION_ENABLED=true` and a valid publisher ID are supplied. In AdSense, select **AdSense code snippet**, confirm **I’ve placed the code**, and click **Verify** after `https://siyaworks.in` serves this deployment. Verification of the GitHub project URL alone does not verify your custom domain.
 
 1. Create an AdSense account, add `siyaworks.in`, and use your actual public publisher ID (format `ca-pub-` followed by 16 digits). Set the Actions variable `ADSENSE_PUBLISHER_ID` and rebuild. This adds the `google-adsense-account` verification meta tag and generates `out/ads.txt` using Google's standard seller format. Verify the line against the exact value supplied by your AdSense account. Never invent an ID.
 2. Request site review using Google's supported meta-tag verification method. Provide substantive original content and accurate About, Contact, and Privacy pages; this starter does not guarantee approval. Confirm the live contact link works before submission.
 3. After approval, create a responsive display ad unit and set `ADSENSE_SLOT_ID`. Placements are between homepage sections and after detail-page content/instructions, away from controls. Keep Auto ads off if you want to preserve these deliberate placements.
 4. Configure and publish a Google-certified CMP, such as AdSense **Privacy & messaging**, for applicable regions. Verify consent, rejection, and preference-reopening controls using the real publisher account. The `ADS_CONSENT_READY` flag is a deployment gate, **not** a consent manager or visitor consent signal. The selected CMP must handle actual consent before ad serving, and the privacy page must reflect the final configuration.
-5. Only when ready, set both `ADS_CONSENT_READY=true` and `ADS_ENABLED=true`, then rebuild. To disable advertising, set `ADS_ENABLED=false` and redeploy. The privacy page reflects the compiled enabled state. No private API key is needed.
+5. Only when ready, set both `ADS_CONSENT_READY=true` and `ADS_ENABLED=true`, then rebuild. To disable manual ad placements, set `ADS_ENABLED=false` and redeploy. Also set `ADSENSE_VERIFICATION_ENABLED=false` to stop loading the publisher script. The privacy page reflects the compiled enabled state. No private API key is needed.
 6. In a browser with the real account, check ads after accepted/refused consent, navigation, mobile sizing, and empty inventory. Ad space reserves at least 300px; larger responsive formats may need further layout adjustment. Never click your own ads to test them.
 
 Local equivalents use the `NEXT_PUBLIC_` names in `.env.example`; Actions maps the shorter repository variable names. All changes require a rebuild. `ads.txt` generation loads Next.js environment files as well as process environment.

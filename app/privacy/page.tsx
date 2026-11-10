@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { adsEnabled, metadata as meta } from "@/lib/site";
+import { adsEnabled, adsenseScriptEnabled, metadata as meta } from "@/lib/site";
 export const metadata = meta(
   "Privacy",
   "How Siya Works handles browser storage, hosting, and optional advertising.",
@@ -42,6 +42,14 @@ export default function Page() {
           serve, personalize, and measure ads, subject to applicable consent
           choices. Where required, use the consent message to choose or change
           your advertising preferences.
+        </p>
+      ) : adsenseScriptEnabled ? (
+        <p>
+          Google’s AdSense script is loaded to verify this site for review.
+          Manual ad placements are disabled. Loading the script connects your
+          browser to Google, which receives connection information such as your
+          IP address and may use cookies or other browser storage. Google’s
+          privacy information below explains its handling of this information.
         </p>
       ) : (
         <p>

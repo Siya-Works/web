@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
-import { AdsScript } from "@/components/ads";
-import { basePath, siteUrl, publisher } from "@/lib/site";
+import { basePath, siteUrl, publisher, adsenseScriptEnabled } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -23,6 +22,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {adsenseScriptEnabled && (
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisher}`}
+            crossOrigin="anonymous"
+          />
+        )}
+      </head>
       <body>
         <a className="skip-link" href="#main">
           Skip to content
@@ -65,7 +73,6 @@ export default function RootLayout({
             <span>© Siya Works</span>
           </div>
         </footer>
-        <AdsScript />
       </body>
     </html>
   );
