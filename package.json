@@ -1,0 +1,33 @@
+{
+  "name": "siya-works",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "tsx scripts/validate.ts && next build --webpack && tsx scripts/ads-txt.ts",
+    "start": "python3 -m http.server 3000 --bind 127.0.0.1 --directory out",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "check": "npm run test && npm run typecheck",
+    "verify:export": "tsx scripts/verify-export.ts"
+  },
+  "dependencies": {
+    "@next/env": "16.4.6",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "prettier": "3.9.10",
+    "tailwindcss": "4.3.5",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
