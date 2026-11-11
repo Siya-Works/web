@@ -1,6 +1,6 @@
 # Siya Works
 
-A cheerful static Next.js site for **siyaworks.in**: three browser games, 15 puzzles, and 20 sourced fun facts. Built with TypeScript, App Router, and Tailwind CSS. No runtime server, database, analytics, or account system.
+A cheerful static Next.js site for **siyaworks.in**: three browser games, 15 puzzles, and 20 sourced fun facts. Built with TypeScript, App Router, and Tailwind CSS. No runtime server, database, or account system.
 
 ## Local development
 
@@ -81,3 +81,9 @@ References: [AdSense consent requirements](https://support.google.com/adsense/an
 Unit tests cover game rules, legal/solvable shuffles, memory pairs, daily selection, blocked/corrupt browser storage, and content validation. Export checks verify every content URL, canonicals, local links/assets, sitemap/robots, and disabled ad markup. Before publishing, check keyboard/touch play, hints and answers, mobile layout, game resets, and browser storage persistence.
 
 For rollback, revert the problematic commit and push to `main`; the same workflow redeploys the previous content. Check the Actions run and deployment URL after each change. This project has no migrations or server-side state.
+
+## Google Tag Manager
+
+Container `GTM-M5MMX3WX` is installed once in the root layout using Google’s standard container bootstrap and no-JavaScript iframe. The data layer is initialized before the asynchronous container loads. This is a Tag Manager container ID, not a GA4 measurement ID; configure and publish a Google tag for your `G-...` measurement ID inside that container to send Analytics data.
+
+For Next.js client navigation, enable GA4 enhanced measurement page views based on browser history changes, or configure a GTM History Change trigger, but do not use both methods for the same page view. Verify a first load and a client-side navigation in Tag Assistant/GA4 DebugView. Configure applicable consent controls in the container. The repository does not change or publish container tags, and container installation alone does not confirm Analytics collection.

@@ -10,11 +10,23 @@ export default function Page() {
     <section className="section page-section narrow prose">
       <span className="eyebrow">THE SMALL PRINT, IN PLAIN WORDS</span>
       <h1>Your privacy matters.</h1>
-      <p>Last updated: November 10, 2026.</p>
+      <p>Last updated: November 11, 2026.</p>
       <h2>No account needed</h2>
       <p>
-        Siya Works does not ask you to create an account. We do not run
-        analytics, a mailing list, or a database of players.
+        Siya Works does not ask you to create an account. We do not run a
+        mailing list or a database of players.
+      </p>
+      <h2>Analytics and Google Tag Manager</h2>
+      <p>
+        We load Google Tag Manager to manage measurement tags, including Google
+        Analytics when configured in our container. Loading it connects your
+        browser to Google. Tags published in the container may collect page
+        visits, device and browser information, and interaction events, and may
+        use cookies or browser storage. See{" "}
+        <a href="https://policies.google.com/privacy">
+          Google’s privacy policy
+        </a>{" "}
+        for more information.
       </p>
       <h2>Scores stay in your browser</h2>
       <p>

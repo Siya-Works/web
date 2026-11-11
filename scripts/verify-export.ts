@@ -30,6 +30,19 @@ for (const route of routes) {
   );
   assert.ok(html.includes("<h1"), "heading: " + route);
   const head = html.split("</head>")[0];
+  assert.equal(
+    (head.match(/id="google-tag-manager"/g) || []).length,
+    1,
+    "one GTM bootstrap: " + route,
+  );
+  assert.ok(
+    head.includes("GTM-M5MMX3WX") && head.includes("gtm.start"),
+    "GTM initialization: " + route,
+  );
+  assert.ok(
+    html.includes("https://www.googletagmanager.com/ns.html?id=GTM-M5MMX3WX"),
+    "GTM fallback: " + route,
+  );
   const scripts = [
     ...head.matchAll(/<script[^>]+src="https:\/\/pagead2[^>]*>/g),
   ];
